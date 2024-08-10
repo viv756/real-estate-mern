@@ -10,11 +10,7 @@ const Profile = () => {
   const [filePercenteage, setFilePercenteage] = React.useState(0);
   const [fileUploadError, setFileUploadError] = React.useState(false);
   const [formData, setFormData] = React.useState({});
-  console.log(filePercenteage);
-  console.log(fileUploadError);
-console.log(formData);
-  
- 
+
   React.useEffect(() => {
     if (file) {
       handleFileUpload(file);
@@ -37,8 +33,7 @@ console.log(formData);
         setFileUploadError(true);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setFormData({ ...formData, avatar: downloadURL });
         });
       }
@@ -64,10 +59,9 @@ console.log(formData);
         />
         <p className="text-sm self-center">
           {fileUploadError ? (
-            <span className="text-red-700">Error Image Upload
-              (image must be less than 2 mb)</span>
+            <span className="text-red-700">Error Image Upload (image must be less than 2 mb)</span>
           ) : filePercenteage > 0 && filePercenteage < 100 ? (
-            (<span className="text-slate-700 ">{`Uploading ${filePercenteage}%`}</span>)
+            <span className="text-slate-700 ">{`Uploading ${filePercenteage}%`}</span>
           ) : filePercenteage === 100 ? (
             <span className="text-green-700">Image successfully uploaded!</span>
           ) : (
