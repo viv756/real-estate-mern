@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
@@ -11,7 +11,7 @@ const Profile = () => {
   const [filePercenteage, setFilePercenteage] = React.useState(0);
   const [fileUploadError, setFileUploadError] = React.useState(false);
   const [formData, setFormData] = React.useState({});
-  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = React.useState(false);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
