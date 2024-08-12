@@ -85,7 +85,7 @@ const Profile = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(updateUserFailure(data.message));
+        dispatch(deleteUserFailure(data.message));
         return;
       }
       dispatch(deleteUserSuccess(data));
