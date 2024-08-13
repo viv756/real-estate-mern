@@ -25,6 +25,7 @@ const Profile = () => {
   const [updateSuccess, setUpdateSuccess] = React.useState(false);
   const [userListings, setuserListings] = React.useState([]);
   const [showListingserror, setShowListingsError] = React.useState(false);
+  const [showDeleteListingError, setShowDeleteListingError] = React.useState(false);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -130,6 +131,24 @@ const Profile = () => {
     }
   };
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      setShowDeleteListingError(false);
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        setShowDeleteListingError(true);
+        return;
+      }
+      setuserListings((prev) => prev.filter((listing) => listing._id !== listingId));
+      setShowDeleteListingError(false);
+    } catch (error) {
+      setShowDeleteListingError(true);
+    }
+  };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center">Profile</h1>
@@ -226,11 +245,18 @@ const Profile = () => {
                 <p>{listing.name}</p>
               </Link>
               <div className="flex flex-col">
-                <button className="text-red-700 uppercase">delete</button>
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className="text-red-700 uppercase">
+                  delete
+                </button>
                 <button className="text-green-700 uppercase">edit</button>
               </div>
             </div>
           ))}
+          <p className="text-red-700">
+            {showDeleteListingError && "You can ownly delete your listing"}
+          </p>
         </div>
       )}
     </div>
