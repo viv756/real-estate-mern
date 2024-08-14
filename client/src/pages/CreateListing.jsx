@@ -26,7 +26,7 @@ const CreateListing = () => {
   const [loading, setLoading] = React.useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  
+
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
@@ -267,7 +267,7 @@ const CreateListing = () => {
               />
               <div className="flex flex-col items-center ">
                 <p>Regular price</p>
-                <span className="text-xs">($ / month)</span>
+                {formData.type === "rent" && <span className="text-xs">($ / month)</span>}
               </div>
             </div>
             {formData.offer && (
@@ -284,7 +284,7 @@ const CreateListing = () => {
                 />
                 <div className="flex flex-col items-center ">
                   <p>Discounted price</p>
-                  <span className="text-xs">($ / month)</span>
+                  {formData.type === "rent" && <span className="text-xs">($ / month)</span>}
                 </div>
               </div>
             )}
