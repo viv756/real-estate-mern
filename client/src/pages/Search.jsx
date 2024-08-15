@@ -106,6 +106,8 @@ const Search = () => {
 
   const onShowMoreClick = async () => {
     const numberOfListings = listings.length;
+    console.log(numberOfListings);
+    
     const startIndex = numberOfListings;
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
