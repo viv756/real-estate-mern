@@ -116,7 +116,7 @@ const Profile = () => {
     }
   };
 
-  const handleShowListings = async (req, res, next) => {
+  const handleShowListings = async () => {
     try {
       setShowListingsError(false);
       const res = await fetch(`/api/user/listings/${currentUser._id}`);
