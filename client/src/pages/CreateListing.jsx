@@ -235,7 +235,7 @@ const CreateListing = () => {
                 min="1"
                 max="10"
                 required
-                className="py-3 text-center border border-gray-300 rounded-lg"
+                className="py-3 text-center border borde  r-gray-300 rounded-lg"
                 onChange={handleChange}
                 value={formData.bedrooms}
               />
